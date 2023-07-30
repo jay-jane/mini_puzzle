@@ -1,0 +1,137 @@
+
+*{padding: 0; margin: 0; list-style: none;}
+img{ max-width: 100%; height: auto;}
+.background{
+    width: 100%;
+    height: 100px;
+    text-align: center;
+}
+
+.background .hd-box{
+    /* background-color: aqua; */
+    width: 1780px;
+    height: 100px;
+    overflow: hidden;
+    display: inline-block;
+}
+
+.left-img-box{
+    /* border: 1px solid black; */
+    float: left;
+    margin-top: 15px;
+}
+
+/* 헤더 버튼박스 */
+.right-btn-box{
+    float: right;
+    margin-top: 30px;
+}
+
+.right-btn-box > button{
+    width: 150px;
+    height: 30px;
+    border-radius: 40px;
+    border: none;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.right-btn-box .LoginBtn{
+    background-color: #00BFFF;
+    color: white;
+}
+
+/* 메인 콘텐츠 상단*/
+.main-background{
+    /* background-color: yellow; */
+    text-align: center;
+}
+
+.main-background .content1{
+    border: 1px solid black;
+    background-image: url("img/center1.png");
+    width: 1780px;
+    height: 400px;
+    display: inline-block;
+    position: relative;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.content1-box{
+    /* border: 1px solid red; */
+    position: absolute;
+    top: 35%;
+    left: 28%;
+    color: white;
+    line-height: 40px;
+}
+
+.content1-box .search-box{
+    /* border: 1px solid yellow; */
+    width: 100%;
+    text-align: center;
+}
+.content1-box .search{
+    width: 650px;
+    min-height: 40px;
+    border-radius: 40px;
+    border: none;
+    box-sizing: border-box;
+}
+
+.content1-box .search-btn{
+    width: 100px;
+    height: 40px;
+    background-color: #00BFFF;
+    border-radius: 40px;
+    color: white;
+    border: none;
+}
+
+/* 메인콘텐츠 하단 */
+.main-background .content2{
+    /* border: 1px solid black; */
+    width: 1820px;
+    display: inline-block;
+}
+
+
+/* 이미지 플렉스로 처리해보기 */
+
+.box-container{
+    display: inline-flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+}
+
+.box-container li{
+
+    flex-basis: 25%;
+    padding: 20px 20px;
+    box-sizing: border-box;
+    position: relative;
+}
+
+
+/* 호버콘텐츠 해보기 */
+
+.box-container li .hover_cont{
+    position: absolute;
+    text-align: center;
+    top: 20px;
+    width: 415px;
+    height: 553.33px;
+    line-height: 553.33px;
+    opacity: 0;
+    color: white;
+    font-size: 36px;
+    font-weight: 800;
+
+    transition: opacity 0.13s ease-in-out;
+}
+
+.box-container li:hover .hover_cont{
+    opacity: 0.6;
+    background-color: black;
+}

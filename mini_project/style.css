@@ -1,0 +1,200 @@
+@font-face{
+    font-family:'bitbit';
+    src:url('//cdn.df.nexon.com/img/common/font/DNFBitBit-Regular.woff'),url('//cdn.df.nexon.com/img/common/font/DNFBitBit-Regular.woff2') ;
+  }
+
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    box-sizing: border-box;
+    font-family: 'bitbit';
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    background-image: url(img/beige.jpg);
+    background-size: cover;
+    position: relative;
+}
+
+body.dimmed::before { /* 결과 팝업창 */
+    content: '';
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.75);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    display: none;
+}
+.popup {
+    z-index: 1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 300px;
+    max-width: 600px;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 2px 55px -25px rgb(0 0 0 / 100%);
+    display: none;
+}
+.popup > .title {
+    border-radius: 15px 15px 0 0;
+    min-height: 40px;
+    color: #fff;
+    background-color: #b66;
+    padding: 10px 15px;
+    box-sizing: border-box;
+}
+.popup > .content {
+    padding: 20px;
+    box-sizing: border-box;
+}
+.popup > .cmd {
+    bottom: 0;
+    min-height: 40px;
+    padding: 15px 15px;
+    box-sizing: border-box;
+    border-radius: 0 0 15px 15px;
+    min-height: 40px;
+    text-align: right;
+}
+.popup > .cmd .button {
+    border-radius: 8px;
+    padding: 5px 10px;
+    border: 1px solid #aaa;
+}
+.popup > .cmd input:hover {
+    color: #fff;
+    background-color: #000;
+    border-color: #000;
+}
+
+.timer {
+    margin-top: 200px;
+    text-align: center;
+}
+
+.wrap {
+    width: 300px;
+    height: 300px;
+    margin: 0 auto;
+}
+
+.img_wrap {
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.img_wrap li {
+    border: 1px solid #666;
+    width: 100px;
+    height: 100px;
+    float: left;
+}
+
+.img {
+    width: 100px;
+    height: 100px;
+}
+
+.menu {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.btn {
+    text-align: center;
+    margin-top: 20px;
+    overflow: hidden;
+}
+
+.btn>button {
+    display: inline-block;
+    width: 100px;
+    height: 30px;
+    border: 0;
+    border-radius: 5px;
+    background-color: bisque;
+    font-size: 18px;
+}
+.btn button:hover {
+    background-color: rgb(245, 202, 151);
+    cursor: pointer;
+}
+.btn > .reset {
+    display: none;
+}
+
+.timerBlock {
+    text-align: center;
+}
+
+.menu input{
+    width: 100px;
+    height: 100px;
+    border: 0;
+}
+.menu input:hover {
+    opacity: 0.9;
+    transform: scale(1.1);
+    z-index: 1;
+    transition: .1s ease-in-out;
+}
+.menu .rabbit {background-image: url(img/rabbit.png);}
+.menu .snowman {background-image: url(img/snowman3.jpg);}
+.menu .peach {background-image: url(img/peach5.jpg);}
+.menu .apple {background-image: url(img/apple.jpg);}
+.menu .ocean {background-image: url(img/ocean1.jpg);}
+
+.subImg {
+    margin-bottom: 20px;
+}
+
+.loading {
+    background-image: url(img/beige.jpg);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 8;
+    opacity: 0.7;
+}
+
+#container {
+    width: 400px;
+    height: 8px;
+    background-color: bisque;
+    margin: 0 auto;
+}
+#bar {
+    width: 1%;
+    height: 8px;
+    background-color: rgb(224, 173, 6);
+    box-sizing: border-box;
+}
+
+.back {
+    width: 50px;
+    height: 50px;
+    background-color: bisque;
+    background-image: url(img/home.png);
+    border: 0;
+    opacity: 0.7;
+}
+.back:hover {
+    cursor: pointer;
+    opacity: 1;
+}

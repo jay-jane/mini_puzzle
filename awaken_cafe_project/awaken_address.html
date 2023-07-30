@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- bootstrap 링크-->
+    <!--css링크-->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!--제이쿼리 링크-->
+    <script src="jquery/jquery-3.6.3.min.js"></script>
+    <!--js링크-->
+    <script src="js/bootstrap.min.js"></script>dn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
+
+
+    <link rel="stylesheet" href="awaken_address.css">
+    <script type="text/javascript"
+        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ebf69c023d12ee2d9f372fc505174fe2"></script>
+    <script type="text/javascript"
+        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=services,clusterer,drawing"></script>
+</head>
+
+<body>
+
+    <header>
+        <div class="wrap">
+            <div id="store_logo_wrap">
+                <div class="store_name">Awaken</div>
+            </div>
+            <ul class="header_list">
+                <li><a href="#">어웨이큰 소개</a></li>
+                <li><a href="#">메뉴</a></li>
+                <li><a href="#">제품 판매</a></li>
+                <li><a href="awaken_address.html">오시는 길</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <section id="map_part">
+        <div class="container">
+            <div class="text">오시는 길</div>
+            <div id="map" style="width:800px;height:600px;"></div>
+            <div class="text2">
+                <div class="left_wrap">
+                    <div class="address"><img src="awaken_img/map_ic.png"> 경기 가평군 가평읍 오리나무길 21-1 1층</div>
+                </div>
+                <div class="right_wrap">
+                    <img src="awaken_img/tel.png" width="60px">
+                    <div class="right_wrap_inner">
+                        <div>TEL</div>
+                        <div class="right">0507-1363-5596</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // var container = document.getElementById('map');
+        // var options = {
+        //     center: new kakao.maps.LatLng(37.8256780, 127.514088),
+        //     level: 3
+        // };
+
+        // //지도 생성
+        // var map = new kakao.maps.Map(container, options);
+
+        //이미지 마커와 커스텀 오버레이
+        var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+            mapOption = {
+                center: new kakao.maps.LatLng(37.8256780, 127.514088), // 지도의 중심좌표
+                level: 3 // 지도의 확대 레벨
+            };
+
+        var map = new kakao.maps.Map(mapContainer, mapOption); //지도 생성
+
+        var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png', // 마커이미지의 주소입니다    
+            imageSize = new kakao.maps.Size(64, 69), // 마커이미지의 크기입니다
+            imageOption = { offset: new kakao.maps.Point(27, 69) }; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+
+        // 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
+        var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
+            markerPosition = new kakao.maps.LatLng(37.8256780, 127.514088); // 마커가 표시될 위치입니다
+
+        // 마커를 생성합니다
+        var marker = new kakao.maps.Marker({
+            position: markerPosition,
+            image: markerImage // 마커이미지 설정 
+        });
+
+        // 마커가 지도 위에 표시되도록 설정합니다
+        marker.setMap(map);
+
+        // 커스텀 오버레이에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+        var content = 
+                        '<div class="customoverlay">' +
+                        '  <a href="https://map.naver.com/v5/search/%EA%B0%80%ED%8F%89%20%EC%96%B4%EC%9B%A8%EC%9D%B4%ED%81%B0/place/1963372582?placePath=%3Fentry=pll%26from=nx%26fromNxList=true&c=14193873.8918386,4554824.4097835,15,0,0,0,dh" target="_blank">' +
+                        '    <span class="title">Awaken</span>' +
+                        '  </a>' +
+                        '</div>';
+
+        // 커스텀 오버레이가 표시될 위치입니다 
+        var position = new kakao.maps.LatLng(37.8256780, 127.514088);
+
+        // 커스텀 오버레이를 생성합니다
+        var customOverlay = new kakao.maps.CustomOverlay({
+            map: map,
+            position: position,
+            content: content,
+            yAnchor: 4.5
+        });
+
+
+    </script>
+
+    <!--내 JS파일 링크-->
+    <script type="text/javascript" src="awaken_address.js"></script>
+
+</body>
+
+</html>

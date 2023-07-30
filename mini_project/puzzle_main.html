@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>퍼즐</title>
+    <link rel="icon" href="img/puzzle-piece_1f9e9.png">
+
+    <!-- css 링크 -->
+    <!-- <link rel="stylesheet" href="css/bootstrap.min.css"> -->
+    <!-- jquery 링크 -->
+    <script src="jquery/jquery-3.6.3.min.js"></script>
+    <!-- 부트스트랩 테마 -->
+
+    <!-- js 링크 -->
+    <!-- <script src="js/bootstrap.min.js"></script> -->
+
+    <link rel="stylesheet" href="style.css">
+    <!-- <script src="puzzle_main.js"></script> -->
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div class="timerBlock">
+        <h1 class="timer">puzzle</h1><br>
+    </div>
+    <div class="wrap">
+        <ul class="img_wrap">
+            <li class="list1"></li>
+            <li class="list2"></li>
+            <li class="list3"></li>
+            <li class="list4"></li>
+            <li class="list5"></li>
+            <li class="list6"></li>
+            <li class="list7"></li>
+            <li class="list8"></li>
+            <li class="list9"></li>
+        </ul>
+    </div>
+    
+    <div class="menu">
+        <input type="button" class="rabbit" value="">
+        <input type="button" class="snowman" value="">
+        <input type="button" class="peach" value="">
+        <input type="button" class="apple" value="">
+        <input type="button" class="ocean">
+        
+    </div>
+
+    <div class="btn">
+        <button class="start">시 작</button>
+        <button class="reset">리 셋</button>
+    </div>
+
+    <div class="home_wrap" style="text-align: center; margin-top: 20px;">
+        <input type="button" class="back">
+    </div>
+    
+    <body class="dimmed">
+        <div id="pop" class="popup">
+            <div class="title">결과</div>
+            <div class="content">
+                <p class="cong">축하합니다 !</p>
+                <p class="time">시간</p>
+            </div>
+            <div class="cmd">
+                <input type="button" name="btnclose" class="btnmain" value="메인">
+                <input type="button" name="btnclose" class="btnclose" value="닫기">
+            </div>
+        </div>
+    </body>
+
+    <script>
+        // 로딩 화면
+        window.onload = main;
+
+        var body = document.querySelector("body");
+        var div = document.createElement("div");
+        var container = document.createElement("div");
+        var bar = document.createElement("div");
+        function main() {
+
+            div.classList.add("loading");
+            container.id = "container";
+            bar.id = "bar";
+
+            container.appendChild(bar);
+            div.appendChild(container);
+            body.appendChild(div);
+            load();
+        }
+
+        // 로딩 바
+        var i = 0;
+        function load() {
+            if (i == 0) {
+                i = 1;
+                var elem = document.querySelector("#bar");
+                var width = 1;
+                var id = setInterval(frame, 10);
+                function frame() {
+                    if (width >= 100) {
+                        clearInterval(id);
+                        i = 0;
+                        var s = setTimeout(function () {
+                            div.remove();
+                        }, 500);
+                    } else {
+                        width++;
+                        elem.style.width = width + "%";
+                    }
+                }
+            }
+        }
+
+        //게임 화면
+        var rabbit = document.querySelector(".rabbit");
+        var snowman = document.querySelector(".snowman");
+        var peach = document.querySelector(".peach");
+        var apple = document.querySelector(".apple");
+        var ocean = document.querySelector(".ocean");
+        var li = document.querySelectorAll("li");
+        var ul = document.querySelector(".img_wrap");
+        var back = document.querySelector(".back");
+                back.onclick = function() {
+                    if(confirm('메인 화면으로 돌아가시겠습니까?')) {
+                        location.href='/ProjectHome/HomePage.html';
+                    }
+                }
+                
+        rabbit.onclick = function () {
+            for (var i = 0; i < li.length; i++) {
+                if (li[i].firstElementChild != null) {
+                    li[i].firstElementChild.remove();
+                }
+                var img = document.createElement("img");
+                img.src = "img/rabbit" + (i + 1) + ".png";
+                li[i].appendChild(img);
+            }
+        }
+        snowman.onclick = function () {
+            for (var i = 0; i < li.length; i++) {
+                if (li[i].firstElementChild != null) {
+                    li[i].firstElementChild.remove();
+                }
+                var img = document.createElement("img");
+                img.src = "img/snowman" + (i + 1) + ".jpg";
+                li[i].appendChild(img);
+            }
+        }
+        peach.onclick = function () {
+            for (var i = 0; i < li.length; i++) {
+                if (li[i].firstElementChild != null) {
+                    li[i].firstElementChild.remove();
+                }
+                var img = document.createElement("img");
+                img.src = "img/peach" + (i + 1) + ".jpg";
+                li[i].appendChild(img);
+            }
+        }
+        apple.onclick = function () {
+            for (var i = 0; i < li.length; i++) {
+                if (li[i].firstElementChild != null) {
+                    li[i].firstElementChild.remove();
+                }
+                var img = document.createElement("img");
+                img.src = "img/apple" + (i + 1) + ".jpg";
+                li[i].appendChild(img);
+            }
+        }
+        ocean.onclick = function () {
+            for (var i = 0; i < li.length; i++) {
+                if (li[i].firstElementChild != null) {
+                    li[i].firstElementChild.remove();
+                }
+                var img = document.createElement("img");
+                img.src = "img/ocean" + (i + 1) + ".jpg";
+                li[i].appendChild(img);
+            }
+        }
+
+        var start = document.querySelector(".start");
+        var reset = document.querySelector(".reset");
+        var timer = document.querySelector(".timer");
+        var cnt = 1;
+        var interv;
+        start.onclick = startPuzzle;
+        function startPuzzle() {
+            if (li[0].innerHTML == "") {
+                alert('그림을 선택해주세요');
+            } else {
+                for (var i = 0; i < li.length; i++) {
+                    li[i].draggable = "true";
+                }
+                start.disabled = "disabled"; //버튼 비활성
+                rabbit.disabled = "disabled";
+                rabbit.style.transform = "none";
+                snowman.disabled = "disabled";
+                snowman.style.transform = "none";
+                peach.disabled = "disabled";
+                peach.style.transform = "none";
+                apple.disabled = "disabled";
+                apple.style.transform = "none";
+                ocean.disabled = true;
+                ocean.style.transform = "none";
+
+                reset.style.display = "inline-block";
+                interv = setInterval(function () { //타이머
+                    timer.innerHTML = cnt;
+                    cnt++;
+                    if (cnt > 20) {
+                        timer.style.color = "red";
+                    }
+                }, 1000);
+
+                //이미지 섞기
+                for (var i = ul.children.length; i >= 0; i--) {
+                    ul.appendChild(ul.children[Math.random() * i | 0]);
+                }
+
+                // wrap.removeChild(subImg);
+                var subImg = document.createElement("img");
+                var timerBlock = document.querySelector(".timerBlock");
+                subImg.draggable = false;
+                if (ul.children[0].firstElementChild.src.indexOf('rabbit') != -1) {
+                    subImg.src = 'img/rabbit.png';
+                }
+                if (ul.children[0].firstElementChild.src.indexOf('snowman') != -1) {
+                    subImg.src = 'img/snowman.jpg';
+                }
+                if (ul.children[0].firstElementChild.src.indexOf('peach') != -1) {
+                    subImg.src = 'img/peach.jpg';
+                }
+                if (ul.children[0].firstElementChild.src.indexOf('apple') != -1) {
+                    subImg.src = 'img/apple.jpg';
+                }
+                if (ul.children[0].firstElementChild.src.indexOf('ocean') != -1) {
+                    subImg.src = 'img/ocean.jpg';
+                }
+                subImg.classList.add("subImg");
+                subImg.style.width = "100px";
+                subImg.style.height = "100px";
+                timerBlock.appendChild(subImg);
+
+                
+                var popup = document.querySelector(".popup");
+                var time = document.querySelector(".time");
+                var close = document.querySelector(".btnclose");
+                var currentItem = null;
+                ul.addEventListener("dragstart", (e) => {
+                    currentItem = e.target;
+                    currentItemInner = currentItem.parentElement.innerHTML;
+                });
+                ul.addEventListener("dragover", (e) => {
+                    e.preventDefault();
+                });
+                ul.addEventListener("drop", (e) => {
+                    e.preventDefault();
+                    if (e.target.tagName != 'IMG') return;
+                    var currentDropItem = e.target;
+                    currentDropItemInner = currentDropItem.parentElement.innerHTML;
+                    currentItem.parentElement.innerHTML = currentDropItemInner;
+                    currentDropItem.parentElement.innerHTML = currentItemInner;
+                    
+                    if (ul.children[0].innerHTML == '<img src="img/snowman1.jpg">' &&
+                        ul.children[1].innerHTML == '<img src="img/snowman2.jpg">' &&
+                        ul.children[2].innerHTML == '<img src="img/snowman3.jpg">' &&
+                        ul.children[3].innerHTML == '<img src="img/snowman4.jpg">' &&
+                        ul.children[4].innerHTML == '<img src="img/snowman5.jpg">' &&
+                        ul.children[5].innerHTML == '<img src="img/snowman6.jpg">' &&
+                        ul.children[6].innerHTML == '<img src="img/snowman7.jpg">' &&
+                        ul.children[7].innerHTML == '<img src="img/snowman8.jpg">' &&
+                        ul.children[8].innerHTML == '<img src="img/snowman9.jpg">') {
+                        clearInterval(interv);
+                        back.disabled = true;
+                        popup.style.display = "block";
+                        time.innerHTML = "시간 : " + (cnt - 1) + " 초";
+                        reset.disabled = "disabled";
+                        for(var i = 0; i < li.length; i++) {
+                            li[i].draggable = false;
+                            li[i].firstElementChild.draggable = false;
+                        }
+                        
+                        btnmain.onclick = function() {
+                            location.reload()
+                        }
+
+                        $(document).ready(function () {
+                            $(".btnclose").click(function () {
+                                $("#pop").fadeOut("slow");
+                                reset.disabled = false;
+                                reset.innerHTML = "다시 하기";
+                                start.style.display = "none";
+                                back.disabled = false;
+                            });
+                        });
+                        // close.onclick = closer;
+                    }
+
+                    if (ul.children[0].innerHTML == '<img src="img/rabbit1.png">' &&
+                        ul.children[1].innerHTML == '<img src="img/rabbit2.png">' &&
+                        ul.children[2].innerHTML == '<img src="img/rabbit3.png">' &&
+                        ul.children[3].innerHTML == '<img src="img/rabbit4.png">' &&
+                        ul.children[4].innerHTML == '<img src="img/rabbit5.png">' &&
+                        ul.children[5].innerHTML == '<img src="img/rabbit6.png">' &&
+                        ul.children[6].innerHTML == '<img src="img/rabbit7.png">' &&
+                        ul.children[7].innerHTML == '<img src="img/rabbit8.png">' &&
+                        ul.children[8].innerHTML == '<img src="img/rabbit9.png">') {
+                        clearInterval(interv);
+                        back.disabled = true;
+                        popup.style.display = "block";
+                        time.innerHTML = "시간 : " + (cnt - 1) + " 초";
+                        reset.disabled = "disabled";
+                        for(var i = 0; i < li.length; i++) {
+                            li[i].draggable = false;
+                            li[i].firstElementChild.draggable = false;
+                        }
+
+                        btnmain.onclick = function() {
+                            location.reload()
+                        }
+
+                        $(document).ready(function () {
+                            $(".btnclose").click(function () {
+                                $("#pop").fadeOut("slow");
+                                reset.disabled = false;
+                                reset.innerHTML = "다시 하기";
+                                start.style.display = "none";
+                                back.disabled = false;
+                            });
+                        });
+                        // close.onclick = closer;
+                    }
+
+                    if (ul.children[0].innerHTML == '<img src="img/peach1.jpg">' &&
+                        ul.children[1].innerHTML == '<img src="img/peach2.jpg">' &&
+                        ul.children[2].innerHTML == '<img src="img/peach3.jpg">' &&
+                        ul.children[3].innerHTML == '<img src="img/peach4.jpg">' &&
+                        ul.children[4].innerHTML == '<img src="img/peach5.jpg">' &&
+                        ul.children[5].innerHTML == '<img src="img/peach6.jpg">' &&
+                        ul.children[6].innerHTML == '<img src="img/peach7.jpg">' &&
+                        ul.children[7].innerHTML == '<img src="img/peach8.jpg">' &&
+                        ul.children[8].innerHTML == '<img src="img/peach9.jpg">') {
+                        clearInterval(interv);
+                        back.disabled = true;
+                        popup.style.display = "block";
+                        reset.disabled = "disabled";
+                        time.innerHTML = "시간 : " + (cnt - 1) + " 초";
+                        reset.disabled = "disabled";
+                        for(var i = 0; i < li.length; i++) {
+                            li[i].draggable = false;
+                            li[i].firstElementChild.draggable = false;
+                        }
+
+                        btnmain.onclick = function() {
+                            location.reload()
+                        }
+
+                        $(document).ready(function () {
+                            $(".btnclose").click(function () {
+                                $("#pop").fadeOut("slow");
+                                reset.disabled = false;
+                                reset.innerHTML = "다시 하기";
+                                start.style.display = "none";
+                                back.disabled = false;
+                            });
+                        });
+                        // close.onclick = closer;
+                    }
+
+                    if (ul.children[0].innerHTML == '<img src="img/ocean1.jpg">' &&
+                        ul.children[1].innerHTML == '<img src="img/ocean2.jpg">' &&
+                        ul.children[2].innerHTML == '<img src="img/ocean3.jpg">' &&
+                        ul.children[3].innerHTML == '<img src="img/ocean4.jpg">' &&
+                        ul.children[4].innerHTML == '<img src="img/ocean5.jpg">' &&
+                        ul.children[5].innerHTML == '<img src="img/ocean6.jpg">' &&
+                        ul.children[6].innerHTML == '<img src="img/ocean7.jpg">' &&
+                        ul.children[7].innerHTML == '<img src="img/ocean8.jpg">' &&
+                        ul.children[8].innerHTML == '<img src="img/ocean9.jpg">') {
+                        clearInterval(interv);
+                        back.disabled = true;
+                        popup.style.display = "block";
+                        reset.disabled = "disabled";
+                        time.innerHTML = "시간 : " + (cnt - 1) + " 초";
+                        reset.disabled = "disabled";
+                        for(var i = 0; i < li.length; i++) {
+                            li[i].draggable = false;
+                            li[i].firstElementChild.draggable = false;
+                        }
+
+                        btnmain.onclick = function() {
+                            location.reload()
+                        }
+
+                        $(document).ready(function () {
+                            $(".btnclose").click(function () {
+                                $("#pop").fadeOut("slow");
+                                reset.disabled = false;
+                                reset.innerHTML = "다시 하기";
+                                start.style.display = "none";
+                                back.disabled = false;
+                            });
+                        });
+                        // close.onclick = closer;
+                    }
+
+                    if (ul.children[0].innerHTML == '<img src="img/apple1.jpg">' &&
+                        ul.children[1].innerHTML == '<img src="img/apple2.jpg">' &&
+                        ul.children[2].innerHTML == '<img src="img/apple3.jpg">' &&
+                        ul.children[3].innerHTML == '<img src="img/apple4.jpg">' &&
+                        ul.children[4].innerHTML == '<img src="img/apple5.jpg">' &&
+                        ul.children[5].innerHTML == '<img src="img/apple6.jpg">' &&
+                        ul.children[6].innerHTML == '<img src="img/apple7.jpg">' &&
+                        ul.children[7].innerHTML == '<img src="img/apple8.jpg">' &&
+                        ul.children[8].innerHTML == '<img src="img/apple9.jpg">') {
+                        clearInterval(interv);
+                        back.disabled = true;
+                        popup.style.display = "block";
+                        time.innerHTML = "시간 : " + (cnt - 1) + " 초";
+                        reset.disabled = "disabled";
+                        for(var i = 0; i < li.length; i++) {
+                            li[i].draggable = false;
+                            li[i].firstElementChild.draggable = false;
+                        }
+
+                        btnmain.onclick = function() {
+                            location.reload()
+                        }
+
+                        $(document).ready(function () {
+                            $(".btnclose").click(function () {
+                                $("#pop").fadeOut("slow");
+                                reset.disabled = false;
+                                reset.innerHTML = "다시 하기";
+                                start.style.display = "none";
+                                back.disabled = false;
+                            });
+                        });
+                        // close.onclick = closer;
+                    }
+                });
+
+                function closer() {
+                    setTimeout(function () { //끝나면 새로고침
+                        location.reload();
+                    });
+                }
+
+                var title = document.querySelector(".title");
+                var cong = document.querySelector(".cong");
+                var btnmain = document.querySelector(".btnmain");
+                var btnclose = document.querySelector(".btnclose");
+                reset.onclick = function () {
+                    // if(confirm('게임 화면으로 돌아가시겠습니까?')) {
+                    //     setTimeout(function () { //확인 누르면 새로고침
+                    //         location.reload();
+                    //     });
+                    // }
+                    popup.style.display = "block";
+                    title.innerHTML = "알림";
+                    cong.innerHTML = "";
+                    back.disabled = true;
+                    time.innerHTML = "다시 시작하시겠습니까?";
+                    btnmain.value = "Yes";
+                    btnmain.onclick = yes;
+                    btnclose.value = "No";
+                    btnclose.onclick = no;
+                }
+
+                function yes() {
+                    location.reload();
+                }
+                function no() {
+                    title.innerHTML = "결과";
+                    cong.innerHTML = "축하합니다 !";
+                    btnmain.value = "메인";
+                    btnclose.value = "닫기";
+                    popup.style.display = "none";
+                    back.disabled = false;
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"path": "../../CSS"
+		}
+	],
+	"settings": {
+		"liveServer.settings.port": 5501,
+		"editor.tokenColorCustomizations": {
+			"comments": "#ff0000"
+		},
+		"liveServer.settings.multiRootWorkspaceName": "JS"
+	}
+}

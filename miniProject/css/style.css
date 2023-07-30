@@ -1,0 +1,162 @@
+@import url('https://cdn.jsdelivr.net/npm/galmuri@latest/dist/galmuri.css');
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Galmuri9';
+}
+
+ul {
+    list-style: none;
+
+}
+
+body {
+    height: 100%;
+    overflow: hidden;
+}
+
+
+/* 게임 제목부분 */
+.game_title {
+    width: 600px;
+    height: 30px;
+    text-align: center;
+    font-size: larger;
+    font-weight: 1000;
+    padding: 15px;
+    border-top: 3px solid salmon;
+    border-bottom: 3px solid #16a;
+    border-left: 3px solid #8e44ad;
+    border-right: 3px solid #67c23a;
+    
+    display: table;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* 1. 게임시작화면 */
+.game_start {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    left: 0;
+    top: 0;
+    color: white;
+    font-size: 30px;
+    font-weight: 600;
+    background-image: url(/miniProject/img/welcome.png);
+    background-repeat: no-repeat;
+}
+/* 1-1 게임 설명서정보 */
+.game_start .gameInfo {
+    font-size: 15px;
+    font-weight: 200;
+    border: 3px solid cadetblue;
+    padding: 10px;
+    margin: 10px;
+
+}
+
+/* 1-2 게임 시작버튼 */
+.game_start > button {
+    padding: 5px 10px;
+    color: white;
+    background: cadetblue;
+    border: none;
+    cursor: pointer;
+}
+.game_start > button:hover {
+    background: white;
+    color: cadetblue;
+
+}
+
+/* 2. 게임종료 */
+.game_txt {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    left: 0;
+    top: 0;
+    color: white;
+    font-size: 50px;
+    font-weight: 1000;
+}
+/* 2-1 게임종료버튼 */
+.game_txt > button {
+    padding: 5px 10px;
+    color: white;
+    background: cadetblue;
+    border: none;
+    cursor: pointer;
+}
+.game_txt > button:hover {
+    color: cadetblue;
+    background: white;
+}
+
+/* 3. 점수 */
+.score {
+    text-align: center;
+    font-size: 36px;
+    margin: 2rem;
+}
+/* 4. 레벨 */
+.level {
+    text-align: center;
+    font-size: 20px;
+    margin-bottom: 2px;
+    margin-top: 10px;
+}
+
+/* 5. 게임 판 모양 */
+.playground > ul{
+    border: 1px solid #333;
+    width: 250px;
+    margin: 0 auto;
+}
+
+.playground > ul > li {
+    width: 100%;
+    height: 25px;
+}
+
+.playground > ul > li > ul {
+    display: flex;
+}
+
+.playground > ul > li > ul > li {
+    width: 25px;
+    height: 25px;
+    outline: 1px solid #ccc;
+}
+
+/* 블록모양에 따른 색상 지정하기 */
+.tree {
+    background: #67c23a;
+}
+.square {
+    background: #16a;
+}
+.bar {
+    background: salmon;
+}
+.zee {
+    background: #e6a23c;
+}
+.elLeft {
+    background: #8e44ad;
+}
+.elRight {
+    background: #16a085;
+}

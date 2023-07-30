@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        img{width: 500px; height: auto;}
+    </style>
+</head>
+
+<body>
+    <img src="img/banner.png" alt="배너"><br>
+    <input type="checkbox" class="x"> 오늘 하루 이창을 열지 않기
+
+    <script>
+        var x = document.querySelector(".x");
+       
+        x.onclick = function () {
+
+            var date = new Date();
+            date.setDate(date.getDate() + 1);
+            date.setHours(0);
+            date.setMinutes(0);
+            date.setSeconds(0);
+
+            document.cookie = "mainPopup = true; path=/; expires=" + date.toUTCString();
+            window.close();
+        }
+    </script>
+</body>
+
+</html>
